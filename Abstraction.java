@@ -1,34 +1,43 @@
 class Abstraction{
 	public static void main(String [] args){
-		MathOp m = new MathOpImplemented();
-		System.out.println(m.addition(10, 30));
-		System.out.println(m.substraction(50, 5));
-		System.out.println(m.multiplication(10, 10));
+		Shape s = new ShapeImplementation("Shape", "Red");
+		System.out.println(s.areaSquare(10));
+		System.out.println(s.areaReactangle(10, 5));
+		s.display();
 	}
 }
 
-abstract class MathOp{
-	public abstract float addition(int a, float b);
-	abstract double substraction(int a, double b);
-	protected abstract int multiplication(int a , int b);
 
-	public void m1(){
-		System.out.println("In concrete method");
+abstract class Shape{
+	String name;
+	String color;
+	
+	public Shape(String name, String color){
+		this.name = name;
+		this.color = color;
+	}
+
+	public abstract int areaSquare(int side);
+	public abstract int areaReactangle(int base, int height);
+
+	public void display(){
+		System.out.println(this.name);
+		System.out.println(this.color);
 	}
 }
 
-class MathOpImplemented extends MathOp{
-	public float addition(int n, float m){
-		float reusult = n+m;
-		return reusult;
-	}
-	double substraction (int n, double m){
-		double reusult = n-m;
-		return reusult;
-	}
-	protected int multiplication(int n, int m){
-		int reusult = m*n;
-		return reusult;
-	}
-}	
+class ShapeImplementation extends Shape{
 
+	public ShapeImplementation(String name, String color){
+		super(name, color);
+	}
+	
+	public int areaSquare(int s){
+		int area = s*s;
+		return area;
+	}
+	public int areaReactangle(int b, int h){
+		int area = b*h;
+		return area;
+	}
+}
